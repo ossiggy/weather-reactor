@@ -39,7 +39,7 @@ function filter(object) {
     'weather': weather.map(function(condition){
       return " "+condition.description
     }),
-    'weather_id': weather.map(function(condition){
+    'weather_ids': weather.map(function(condition){
       return condition.id
     }),
     'wind': wind
@@ -56,8 +56,6 @@ function updateDom(weather){
 
   const sunrise = convertTimestamp(weather.sys.sunrise);
   const sunset = convertTimestamp(weather.sys.sunset);
-
-  console.log(weather.weather_id)
 
   let windDir
   if(weather.wind.deg){
@@ -84,6 +82,39 @@ function updateDom(weather){
       </ul>
     `
   )
+  addEffects(weather.weather_ids)
+}
+
+function addEffects(idArray){
+  idArray.map(function(id){
+    if(id>=200&&id<300){
+      $('#weather-report').attr('thunderstorm', true)
+    }
+    if(id>=300&&id<400){
+      $('#weather-report').attr('drizzle', true)
+    }
+    if(id>=500&&id<600){
+      $('#weather-report').attr('rain', true)
+    }
+    if(id>=600&&id<700){
+      $('#weather-report').attr('snow', true)
+    }
+    if(id>=700&&id<800){
+      $('#weather-report').attr('haze', true)
+    }
+    if(id===800){
+      $('#weather-report').attr('clear', true)
+    }
+    if(id>800&&id<900){
+      $('#weather-report').attr('clouds', true)
+    }
+    // if(id>=900&&id<950){
+    //   $('#weather-report').attr('condition', 'thunderstorm')
+    // }
+    // if(id>950&&id<1000){
+    //   $('#weather-report').attr('condition', 'thunderstorm')
+    // }
+  });
 }
 
 function convertTimestamp(timestamp) {
