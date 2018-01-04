@@ -1,21 +1,18 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="grid.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <title>Weather Reactor</title>
   </head>
   <body>
-    <h1>Weather Reactor</h1>
-    <!-- <form id="search-by-name">
-      <h2>Search by city name (leave off your State!)</h2>
-      <input id="city-name-input" placeholder="e.g. Phoenix">
-      <button id="city-name-button" type="submit">Submit</button>
-    </form> will be for international city searching -->
-    <form id="search-by-zip">
+    <h1 class="col-6 offset-3">Weather Reactor</h1>
+    <form class="col-4 offset-4" id="search-by-zip">
       <h2>Enter your zip code...</h2>
       <input id="zip-code-input" placeholder="e.g 07446">
       <button id="zip-code-button" type="submit">Submit</button>
     </form>
-    <div id="weather-report">
+    <div class="col-6 offset-3" id="weather-report">
       <h3>...and watch the results!</h3>
     </div>
     <script

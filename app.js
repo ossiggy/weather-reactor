@@ -1,22 +1,9 @@
-// $('#search-by-name').on('submit', searchByCity); may add international capacity later
 $('#search-by-zip').on('submit', searchByZip);
-
-// function searchByCity(event) {
-//   event.preventDefault();
-//   const cityName = $('#city-name-input').val().replace(/ +, /g, "+");
-//   returnCityWeatherData(cityName)
-// }
-
-// function returnCityWeatherData(city) {
-//   const url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial&type=accurate&APPID=99689a8e1e9e9c4a36e72d7867397088"
-//   $.getJSON(url, function(response) {
-//     filter(response);
-//   });
-// };
 
 function searchByZip(event) {
   event.preventDefault();
   const zipCode = $('#zip-code-input').val()
+  $('#search-by-zip')[0].reset()
   returnZipWeatherData(zipCode);
 }
 
@@ -87,27 +74,32 @@ function updateDom(weather){
 
 function addEffects(idArray){
   idArray.map(function(id){
+    let condition;
     if(id>=200&&id<300){
-      $('#weather-report').attr('thunderstorm', true)
+      condition = 'thunderstorm';
     }
     if(id>=300&&id<400){
-      $('#weather-report').attr('drizzle', true)
+      condition = 'drizzle';
     }
     if(id>=500&&id<600){
-      $('#weather-report').attr('rain', true)
+      condition = 'rain';
     }
     if(id>=600&&id<700){
-      $('#weather-report').attr('snow', true)
+      condition = 'snow';
     }
     if(id>=700&&id<800){
-      $('#weather-report').attr('haze', true)
+      condition = 'haze';
     }
     if(id===800){
-      $('#weather-report').attr('clear', true)
+      condition = 'clear';
     }
     if(id>800&&id<900){
-      $('#weather-report').attr('clouds', true)
+      condition = 'clouds';
     }
+
+    $('body').attr('data-conditions', condition)
+    $('.weather-effect').attr('data-conditions', condition)
+    
     // if(id>=900&&id<950){
     //   $('#weather-report').attr('condition', 'thunderstorm')
     // }
