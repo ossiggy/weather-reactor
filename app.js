@@ -17,7 +17,6 @@ function returnZipWeatherData(zip) {
 }
 
 function filter(object) {
-  console.log(object)
   const {clouds, coord, name, main, sys, weather, wind} = object;
   const importantData = {
     'name': name,
