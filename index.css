@@ -5,27 +5,55 @@
 
 body{
   padding-top: 10%;
-  background-color: #39A2FD;
+  background-image: url('https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5MC80MjQvb3JpZ2luYWwvc3Vuc2hpbmUuanBlZw==');
+  background-size: cover;
   color: white;
+}
+
+[data-conditions]{
+  text-shadow:
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
 }
 
 [data-conditions="clear"] {
-  background-color: #39A2FD;
-  background-image: radial-gradient(farthest-corner at 400px 50px, white 0%, yellow 10%, #38A2FD 25%);
-  color: white;
+  background-image: url('https://i.pinimg.com/originals/f7/86/f7/f786f737cefb416e1a663978e04ef408.jpg');
+  background-size: cover;
 }
 
 [data-conditions="clouds"] {
-  background-color: #9D9D9D;
-  background-image: radial-gradient(farthest-corner at 200px 300px, white 0%, gray 100%, #555555 150%);
-  color: white;
+  background-image: url('https://i2-prod.coventrytelegraph.net/incoming/article4703205.ece/ALTERNATES/s615/Cloudy_Sky_V_by_surczak-Medium.jpg');
+  background-size: cover;
 }
+
 [data-conditions="haze"]{
   background: #ebf1f6; /* Old browsers */
   background: -moz-linear-gradient(top, #ebf1f6 0%, #89c3eb 1%, #abd3ee 49%, #89c3eb 99%, #d5ebfb 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #ebf1f6 0%,#89c3eb 1%,#abd3ee 49%,#89c3eb 99%,#d5ebfb 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #ebf1f6 0%,#89c3eb 1%,#abd3ee 49%,#89c3eb 99%,#d5ebfb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1f6', endColorstr='#d5ebfb',GradientType=0 );
+}
+
+[data-conditions="thunderstorm"]{
+  background-image: url('https://i.ytimg.com/vi/3Ak1ShDQWlU/maxresdefault.jpg');
+  background-size: cover;
+}
+
+[data-conditions='drizzle']{
+  background-image: url('https://img00.deviantart.net/ea88/i/2012/198/6/b/drizzle__by_niki91-d57kcpt.jpg');
+  background-size: cover;
+}
+
+[data-conditions='rain']{
+  background-image: url('https://hips.htvapps.com/htv-prod-media.s3.amazonaws.com/images/rain-1496280940.jpg');
+  background-size: cover;
+}
+
+[data-conditions='snow']{
+  background-image: url('https://az616578.vo.msecnd.net/files/2016/12/02/636162989543617205181940901_snow.jpg');
+  background-size: cover;
 }
 
 h1 {

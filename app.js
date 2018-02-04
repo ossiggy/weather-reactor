@@ -1,22 +1,24 @@
+'use strict';
+
 $('#search-by-zip').on('submit', searchByZip);
 
 function searchByZip(event) {
   event.preventDefault();
-  const zipCode = $('#zip-code-input').val()
-  $('#search-by-zip')[0].reset()
+  const zipCode = $('#zip-code-input').val();
+  $('#search-by-zip')[0].reset();
   returnZipWeatherData(zipCode);
 }
 
 function returnZipWeatherData(zip) {
-  const url = "https://api.openweathermap.org/data/2.5/weather?zip="+zip+"&units=imperial&type=accurate&APPID=99689a8e1e9e9c4a36e72d7867397088"
+  const url = 'https://api.openweathermap.org/data/2.5/weather?zip='+zip+'&units=imperial&type=accurate&APPID=99689a8e1e9e9c4a36e72d7867397088';
   $.getJSON(url, function(response) {
-    console.log(response)
     filter(response);
   });
-};
+}
 
 function filter(object) {
-  const {clouds, coord, name, main, sys, weather, wind} = object
+  console.log(object)
+  const {clouds, coord, name, main, sys, weather, wind} = object;
   const importantData = {
     'name': name,
     'clouds': clouds,
@@ -24,15 +26,14 @@ function filter(object) {
     'main': main,
     'sys': sys,
     'weather': weather.map(function(condition){
-      return " "+condition.description
+      return ' '+condition.description;
     }),
     'weather_ids': weather.map(function(condition){
-      return condition.id
+      return condition.id;
     }),
     'wind': wind
-  }
-  // console.log(importantData)
-  updateDom(importantData)
+  };
+  updateDom(importantData);
 }
 
 function updateDom(weather){
@@ -44,7 +45,7 @@ function updateDom(weather){
   const sunrise = convertTimestamp(weather.sys.sunrise);
   const sunset = convertTimestamp(weather.sys.sunset);
 
-  let windDir
+  let windDir;
   if(weather.wind.deg){
     windDir = calculateDirection(weather.wind.deg);
   }
@@ -68,8 +69,8 @@ function updateDom(weather){
         <li>Sunset: ${sunset}</li>
       </ul>
     `
-  )
-  addEffects(weather.weather_ids)
+  );
+  addEffects(weather.weather_ids);
 }
 
 function addEffects(idArray){
@@ -97,88 +98,82 @@ function addEffects(idArray){
       condition = 'clouds';
     }
 
-    $('body').attr('data-conditions', condition)
-    $('.weather-effect').attr('data-conditions', condition)
+    $('body').attr('data-conditions', condition);
+    $('.weather-effect').attr('data-conditions', condition);
     
-    // if(id>=900&&id<950){
-    //   $('#weather-report').attr('condition', 'thunderstorm')
-    // }
-    // if(id>950&&id<1000){
-    //   $('#weather-report').attr('condition', 'thunderstorm')
-    // }
   });
 }
 
 function convertTimestamp(timestamp) {
   var d = new Date(timestamp * 1000),
-		hh = d.getHours(),
-		h = hh,
-		min = ('0' + d.getMinutes()).slice(-2),
-		ampm = 'AM',
-		time;
+    hh = d.getHours(),
+    h = hh,
+    min = ('0' + d.getMinutes()).slice(-2),
+    ampm = 'AM',
+    time;
 			
-	if (hh > 12) {
-		h = hh - 12;
-		ampm = 'PM';
-	} else if (hh === 12) {
-		h = 12;
-		ampm = 'PM';
-	} else if (hh == 0) {
-		h = 12;
-	}
+  if (hh > 12) {
+    h = hh - 12;
+    ampm = 'PM';
+  } else if (hh === 12) {
+    h = 12;
+    ampm = 'PM';
+  } else if (hh === 0) {
+    h = 12;
+  }
 	
-	time = h + ':' + min + ' ' + ampm;
+  time = h + ':' + min + ' ' + ampm;
 		
-	return time;
+  return time;
 }
 
 function calculateDirection(d){
   if(d===0||d===360){
-    return 'N'
+    return 'N';
   }
   if(d>0&&d<45){
-    return 'N/NE'
+    return 'N/NE';
   }
   if(d===45){
-    return 'NE'
+    return 'NE';
   }
   if(d>45&&d<90){
-    return 'E/NE'
+    return 'E/NE';
   }
   if(d===90){
-    return 'E'
+    return 'E';
   }
   if(d>90&&d<135){
-    return 'E/SE'
+    return 'E/SE';
   }
   if(d===135){
-    return 'SE'
+    return 'SE';
   }
   if(d>135&&d<180){
-    return 'S/SE'
+    return 'S/SE';
   }
   if(d===180){
-    return 'S'
+    return 'S';
   }
   if(d>180&&d<225){
-    return 'S/SW'
+    return 'S/SW';
   }
   if(d===225){
-    return 'SW'
+    return 'SW';
   }
   if(d>225&&d<270){
-    return 'W/SW'
+    return 'W/SW';
   }
   if(d===270){
-    return 'W'
+    return 'W';
   }
   if(d>270&&d<315){
-    return 'W/NW'
+    return 'W/NW';
   }
   if(d===315){
-    return 'W'
+    return 'W';
   }
   if(d>315&&d<360){
-    return 'N/NW'
+    return 'N/NW';
   }
 }
