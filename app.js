@@ -12,6 +12,7 @@ function searchByZip(event) {
 function returnZipWeatherData(zip) {
   const url = 'https://api.openweathermap.org/data/2.5/weather?zip='+zip+'&units=imperial&type=accurate&APPID=99689a8e1e9e9c4a36e72d7867397088';
   $.getJSON(url, function(response) {
+    console.log(response);
     filter(response);
   });
 }
